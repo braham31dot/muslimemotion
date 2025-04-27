@@ -29,8 +29,7 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    h1,
-    p {
+    h1, p {
         margin: 10px 0;
     }
 
@@ -70,10 +69,9 @@
         border-radius: 10px;
         background: white;
         color: black;
-        font-family: 'Arial', sans-serif;
         display: flex;
-        flex-direction: column; /* Ensure messages stack vertically */
-        gap: 10px; /* Add space between messages */
+        flex-direction: column;
+        gap: 10px;
     }
 
     input[type="text"] {
@@ -94,70 +92,41 @@
     }
 
     .botMessage {
-        display: block; /* Make the bot's message a block element */
+        display: block;
         margin-top: 10px;
         padding: 10px;
         border-radius: 8px;
         background-color: #f0f0f0;
         text-align: left;
-        animation: typing 2s steps(30) 1s forwards;
-        white-space: normal; /* Allow wrapping of text */
+        white-space: normal;
         position: relative;
-        max-width: 80%; /* Limit width for better alignment */
+        max-width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
 
-    .botHead {
+    .botHead, .botHeadNearSend {
         width: 30px;
         height: 30px;
         background-color: #ff69b4;
         border-radius: 50%;
         position: absolute;
-        top: 5px;
-        left: -40px;
         animation: bounce 0.6s infinite alternate;
     }
 
-    @keyframes typing {
-        0% {
-            width: 0;
-        }
-
-        100% {
-            width: 100%;
-        }
-    }
-
-    @keyframes bounce {
-        0% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(-5px);
-        }
+    .botHead {
+        top: 5px;
+        left: -40px;
     }
 
     .botHeadNearSend {
-        width: 30px;
-        height: 30px;
-        background-color: #ff69b4;
-        border-radius: 50%;
-        position: absolute;
         top: -45px;
         left: 85%;
-        animation: bounceNearSend 0.6s infinite alternate;
     }
 
-    @keyframes bounceNearSend {
-        0% {
-            transform: translateY(0);
-        }
-
-        100% {
-            transform: translateY(-5px);
-        }
+    @keyframes bounce {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-5px); }
     }
 
     .highlight {
@@ -182,73 +151,63 @@
         color: #ff1493;
     }
 
-    /* Cyberpunk LED Style for Phones Only */
+    /* Mobile Version - White background, pink borders, golden buttons */
     @media (max-width: 600px) {
         body {
-            background-color: white; /* Entire phone background is white */
-            color: black; /* Black text */
-            border: 5px solid gold; /* Thin gold glowing border around the entire page */
-            box-shadow: 0 0 20px gold; /* Glowing gold border effect */
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove padding */
-            background-image: none; /* Disable the background image on mobile */
-        }
-
-        .container {
-            width: 100%; /* Make container full width on mobile */
-            padding: 20px;
-            background-color: #ffffff; /* White container */
+            background-color: white;
             color: black;
-            border: 2px solid gold; /* Gold border */
-            box-shadow: 0 0 15px gold; /* Gold glow around boxes */
-            border-radius: 0; /* Remove border-radius for full-page box */
-            max-width: 100%; /* Ensure it takes the entire width */
+            border: 5px solid #ff69b4; /* Pink border */
+            box-shadow: 0 0 20px #ff69b4;
+            margin: 0;
+            padding: 0;
+            background-image: none;
         }
 
+        .container, 
         #chatBox, 
         #helpPopup, 
         #messages, 
         .popup {
-            background-color: #ffffff; /* White container */
+            background-color: white;
             color: black;
-            border: 2px solid gold; /* Gold border */
-            box-shadow: 0 0 15px gold; /* Gold glow around boxes */
+            border: 2px solid #ff69b4;
+            box-shadow: 0 0 15px #ff69b4;
         }
 
         h1, p, button, input[type="text"], .highlight, .important, .footer {
-            color: black !important; /* All text black */
+            color: black !important;
         }
 
         input[type="text"] {
-            background-color: #f8f8f8; /* Light gray input */
-            border: 1px solid lightgreen;
+            background-color: #f9f9f9;
+            border: 1px solid #ff69b4;
             color: black;
-            box-shadow: 0 0 10px lightgreen;
+            box-shadow: 0 0 10px #ff69b4;
         }
 
         button {
             background-color: gold;
             color: black;
+            font-weight: bold;
             box-shadow: 0 0 12px gold;
             border: none;
-            font-weight: bold;
         }
 
         button:hover {
-            background-color: #ffd700; /* Lighter gold on hover */
-            box-shadow: 0 0 20px lightgreen; /* Light green glow on hover for more LED effect */
+            background-color: goldenrod;
+            box-shadow: 0 0 20px #ff69b4;
         }
 
         .botMessage {
-            background-color: #f8f8f8;
+            background-color: #f9f9f9;
             color: black;
-            border: 1px solid lightgreen;
-            box-shadow: 0 0 8px lightgreen;
+            border: 1px solid #ff69b4;
+            box-shadow: 0 0 8px #ff69b4;
         }
 
         .botHead, .botHeadNearSend {
-            background-color: gold;
-            box-shadow: 0 0 8px gold;
+            background-color: #ff69b4;
+            box-shadow: 0 0 8px #ff69b4;
         }
     }
 </style>
