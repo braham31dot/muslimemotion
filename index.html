@@ -194,7 +194,17 @@
             background-image: none; /* Disable the background image on mobile */
         }
 
-        .container, 
+        .container {
+            width: 100%; /* Make container full width on mobile */
+            padding: 20px;
+            background-color: #000000; /* Pure black container */
+            color: white;
+            border: 2px solid red; /* Red border */
+            box-shadow: 0 0 15px red; /* Red glow around boxes */
+            border-radius: 0; /* Remove border-radius for full-page box */
+            max-width: 100%; /* Ensure it takes the entire width */
+        }
+
         #chatBox, 
         #helpPopup, 
         #messages, 
