@@ -7,206 +7,9 @@
     <title>Support Web App</title>
       <meta name="theme-color" content="#ff69b4">
     <link rel="manifest" href="manifest.json">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            color: black;
-        }
-
-        .container {
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        h1,
-        p {
-            margin: 10px 0;
-        }
-
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            border-radius: 10px;
-            border: none;
-            background-color: #ff69b4;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        button:hover {
-            background-color: #ff1493;
-            transform: scale(1.05);
-        }
-
-        #chatBox,
-        #helpPopup {
-            margin-top: 20px;
-            background: rgba(0, 0, 0, 0.05);
-            padding: 15px;
-            border-radius: 10px;
-            display: none;
-        }
-
-        #messages {
-            margin-bottom: 20px;
-            height: 200px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 10px;
-            background: white;
-            color: black;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column; /* Ensure messages stack vertically */
-            gap: 10px; /* Add space between messages */
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            width: 80%;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        .popup {
-            display: none;
-            background: rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-    .botMessage {
-    display: block; /* Make the bot's message a block element */
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    text-align: left;
-    animation: typing 2s steps(30) 1s forwards;
-    white-space: normal; /* Allow wrapping of text */
-    position: relative;
-    max-width: 80%; /* Limit width for better alignment */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-        .botHead {
-            width: 30px;
-            height: 30px;
-            background-color: #ff69b4;
-            border-radius: 50%;
-            position: absolute;
-            top: 5px;
-            left: -40px;
-            animation: bounce 0.6s infinite alternate;
-        }
-
-        @keyframes typing {
-            0% {
-                width: 0;
-            }
-
-            100% {
-                width: 100%;
-            }
-        }
-
-        @keyframes bounce {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .botHeadNearSend {
-            width: 30px;
-            height: 30px;
-            background-color: #ff69b4;
-            border-radius: 50%;
-            position: absolute;
-            top: -45px;
-            left: 85%;
-            animation: bounceNearSend 0.6s infinite alternate;
-        }
-
-        @keyframes bounceNearSend {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .highlight {
-            background-color: #f0f8ff;
-            padding: 10px;
-            margin: 15px 0;
-            border-radius: 10px;
-        }
-
-        .important {
-            font-weight: bold;
-            color: #ff1493;
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        .footer a {
-            color: #ff1493;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            button {
-                font-size: 0.9rem;
-                padding: 8px 16px;
-            }
-
-            input[type="text"] {
-                font-size: 0.9rem;
-            }
-
-            .container {
-                padding: 15px;
-                margin: 10px;
-                border-radius: 8px;
-            }
-        }
-         body {
+   <style>
+    /* General Styles for Desktop */
+    body {
         font-family: 'Arial', sans-serif;
         background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
         background-size: cover;
@@ -226,12 +29,163 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-   <style>
-    /* 🎯 Cyberpunk LED Style for Phones Only */
+    h1,
+    p {
+        margin: 10px 0;
+    }
+
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ff69b4;
+        color: white;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background-color: #ff1493;
+        transform: scale(1.05);
+    }
+
+    #chatBox,
+    #helpPopup {
+        margin-top: 20px;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+
+    #messages {
+        margin-bottom: 20px;
+        height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 10px;
+        background: white;
+        color: black;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column; /* Ensure messages stack vertically */
+        gap: 10px; /* Add space between messages */
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        width: 80%;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .popup {
+        display: none;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .botMessage {
+        display: block; /* Make the bot's message a block element */
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #f0f0f0;
+        text-align: left;
+        animation: typing 2s steps(30) 1s forwards;
+        white-space: normal; /* Allow wrapping of text */
+        position: relative;
+        max-width: 80%; /* Limit width for better alignment */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .botHead {
+        width: 30px;
+        height: 30px;
+        background-color: #ff69b4;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        left: -40px;
+        animation: bounce 0.6s infinite alternate;
+    }
+
+    @keyframes typing {
+        0% {
+            width: 0;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    @keyframes bounce {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .botHeadNearSend {
+        width: 30px;
+        height: 30px;
+        background-color: #ff69b4;
+        border-radius: 50%;
+        position: absolute;
+        top: -45px;
+        left: 85%;
+        animation: bounceNearSend 0.6s infinite alternate;
+    }
+
+    @keyframes bounceNearSend {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .highlight {
+        background-color: #f0f8ff;
+        padding: 10px;
+        margin: 15px 0;
+        border-radius: 10px;
+    }
+
+    .important {
+        font-weight: bold;
+        color: #ff1493;
+    }
+
+    .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .footer a {
+        color: #ff1493;
+    }
+
+    /* Cyberpunk LED Style for Phones Only */
     @media (max-width: 600px) {
         body {
             background-image: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            /* Pink flowers still for kawaii 🌸 */
             background-size: cover;
             background-position: center;
             background-attachment: fixed; /* Make it feel deeper cyberpunk */
