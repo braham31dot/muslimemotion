@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Web App</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: black;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1,
+        p {
+            margin: 10px 0;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: #ff69b4;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+        #chatBox,
+        #helpPopup {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #messages {
+            margin-bottom: 20px;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column; /* Ensure messages stack vertically */
+            gap: 10px; /* Add space between messages */
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            width: 80%;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .popup {
+            display: none;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+    .botMessage {
+    display: block; /* Make the bot's message a block element */
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    text-align: left;
+    animation: typing 2s steps(30) 1s forwards;
+    white-space: normal; /* Allow wrapping of text */
+    position: relative;
+    max-width: 80%; /* Limit width for better alignment */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+        .botHead {
+            width: 30px;
+            height: 30px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: -40px;
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .botHeadNearSend {
+            width: 30px;
+            height: 30px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+            position: absolute;
+            top: -45px;
+            left: 85%;
+            animation: bounceNearSend 0.6s infinite alternate;
+        }
+
+        @keyframes bounceNearSend {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .highlight {
+            background-color: #f0f8ff;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .important {
+            font-weight: bold;
+            color: #ff1493;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .footer a {
+            color: #ff1493;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+
+            input[type="text"] {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 10px;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="content-en">
+        <h1>Hey friend 🌸</h1>
+        <p>We are here to help you! This app is Muslim-based web-app designed to assist you during hard times the Umma needs all the support we can give 🍉🕊️. 🫶</p>
+        <p>Please remember: you are NOT alone. Prioritize yourself and keep pushing forward, it's not HARAM 💪.</p>
+
+        <button onclick="toggleAbout()">About Us</button>
+        <button onclick="toggleHelp()">📖 Read Me Please !!</button>
+        <button onclick="toggleChat()">💬 Chat</button>
+
+        <div id="aboutPopup" class="popup">
+            <h2>About Us</h2>
+            <div class="container">
+                <h1>Assalamu Alaikum Wa Rahmatullahi Wa Barakatuhu</h1>
+                <h2>Welcome to MoodTracker.pro</h2>
+                <p>
+                    MoodTracker.pro is a unique web-based app designed to offer support to the Muslim community. Our goal is to help our brothers and sisters navigate emotional well-being with mindfulness, support, and love, rooted deeply in Islamic values. This platform provides real-time assistance tailored to those seeking a gentle, Islamic approach to mental health.
+                </p>
+
+                <div class="highlight">
+                    <h2>Our Mission</h2>
+                    <p>
+                        MoodTracker.pro is here to serve you — the Muslim community — with an API-driven, human-written service that offers immediate support in moments of need. Privacy and security are essential to us, and we ensure that no personal data, chat logs, or interactions are collected or stored. This app is built to prioritize immediate help while adhering to Islamic values.
+                    </p>
+                </div>
+
+                <h2>Privacy and Security</h2>
+                <p>We take your privacy seriously:</p>
+                <ul>
+                    <li><span class="important">No data collection:</span> All data is wiped once the app is closed or refreshed.</li>
+                    <li><span class="important">No inappropriate interactions:</span> All interactions are respectful and rooted in Islamic teachings.</li>
+                    <li><span class="important">No chat feature:</span> This prevents misunderstandings or harmful content.</li>
+                </ul>
+
+                <h2>Why a Web App?</h2>
+                <p>
+                    Many of our brothers and sisters face limited access to high-speed internet or mobile app stores. A web app ensures universal accessibility:
+                </p>
+                <ul>
+                    <li>You can access it through your browser without needing a download.</li>
+                    <li>Save it to your device by selecting "Add to Home Screen" in your browser.</li>
+                    <li>It works efficiently even with minimal internet access.</li>
+                </ul>
+                <p>
+                    Our web app bridges the gap between accessibility and efficiency, making it ideal for anyone, anywhere.
+                </p>
+
+                <h2>Why Choose Us?</h2>
+                <ul>
+                    <li><span class="important">Universal Accessibility:</span> Minimal internet access required.</li>
+                    <li><span class="important">Instant Updates:</span> No waiting times; updates are instant.</li>
+                    <li><span class="important">For the Sake of Allah:</span> This project is non-profit, purely for serving the Muslim Ummah.</li>
+                </ul>
+
+                <h2>Google AdSense Policy</h2>
+                <p>
+                    This web app may display ads via Google AdSense to support its maintenance. Google AdSense may use cookies to serve ads based on prior visits to our site or other sites on the internet. For details, visit the <a href="https://policies.google.com/privacy" target="_blank">Google Privacy & Terms page</a>.
+                </p>
+
+                <h2>Hadith and Values</h2>
+                <p>
+                    As mentioned in the beautiful words of the Prophet Muhammad ﷺ:
+                </p>
+                <blockquote class="highlight">
+                    "The strong person is not the one who is able to wrestle, but the one who controls themselves when angry." — (Sahih al-Bukhari)
+                </blockquote>
+                <p>
+                    MoodTracker.pro is built to help you control your emotions, guide your actions, and find comfort in the teachings of Islam.
+                </p>
+
+                <h2>Connect With Us</h2>
+                <p>
+                    We welcome your feedback and suggestions. Please don't hesitate to reach out if you have questions or ideas! Email us at <a href="mailto:securewebsolutions.ink">securewebsolutions.ink</a>.
+                </p>
+
+                <div class="footer">
+                    <p>May Allah guide us all to the best of health, both physically and spiritually. Ameen.</p>
+                    <p>We are not professional therapists but friends who care.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="helpPopup" class="popup">
+            <h2>Help</h2>
+            <p>Here, you can ask for any help you need. 😊</p>
+        </div>
+
+        <div id="chatBox">
+            <h2>Chat</h2>
+            <div id="messages"></div>
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+            <div class="botHeadNearSend"></div> <!-- Bot head near the send button -->
+        </div>
+    </div>
+
+    <script>
+        function toggleAbout() {
+            const aboutPopup = document.getElementById('aboutPopup');
+            aboutPopup.style.display = aboutPopup.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleHelp() {
+            const helpPopup = document.getElementById('helpPopup');
+            helpPopup.style.display = helpPopup.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleChat() {
+            const chatBox = document.getElementById('chatBox');
+            chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function sendMessage() {
+    const input = document.getElementById('userInput').value.toLowerCase();
+    const messages = document.getElementById('messages');
+    let foundCategory = 'default';
+
+    const keywords = ['depressed', 'sad', 'anxious', 'angry', 'sick', 'tired', 'happy', 'heartbroken', 'thank', 'salam', 'hi'];
+
+    // Match the input to a category
+    for (let keyword of keywords) {
+        if (input.includes(keyword)) {
+            foundCategory = keyword === 'thank' ? 'thankyou' : keyword === 'hello' || keyword === 'hi' ? 'salam' : keyword;
+            break;
+        }
+    }
+
+    // Get a random bot reply based on the category
+    const possibleReplies = responses['en'][foundCategory];
+    const randomReply = possibleReplies[Math.floor(Math.random() * possibleReplies.length)];
+
+    // Add user message to the chat
+    const newUserMessage = document.createElement('div');
+    newUserMessage.classList.add('userMessage'); // Add class for user message styling
+    newUserMessage.innerHTML = `<b>You:</b> ${input}`;
+    messages.appendChild(newUserMessage);
+
+    // Add bot message to the chat
+    const botMessage = document.createElement('div');
+    botMessage.classList.add('botMessage'); // Add class for bot message styling
+
+    // Create a bot head for animation
+    const botHead = document.createElement('div');
+    botHead.classList.add('botHead'); // Add bot head animation class
+
+    // Insert bot's response and bot head into the message
+    botMessage.innerHTML = `<b>Bot:</b> ${randomReply}`;
+    botMessage.appendChild(botHead); // Add bot head animation to message
+    messages.appendChild(botMessage);
+
+    // Clear input field and scroll to bottom of the chat
+    document.getElementById('userInput').value = "";
+    messages.scrollTop = messages.scrollHeight;
+}
+
+const responses = {
+    en: {
+
+        anxious: [
+        "Breathe deeply, for Allah says in the Qur'an: 'Indeed, with hardship comes ease.' (Qur'an 94:6). Trust that this anxiety will pass, and rely on Allah’s plan.      Always remember, 'And whosoever fears Allah…He will make a way for him to get out (from every difficulty)' (Qur'an 65:2-3). Take comfort in prayer and supplication. 🌿 [Learn more about dealing with anxiety in Islam](https://www.islamicrelief.org.uk/mental-health/).",
+        "Anxiety may seem overwhelming, but remember the words of the Prophet Muhammad (PBUH): 'If you ask Allah for anything, ask Him with certainty.' (Sahih Muslim). Ground yourself in prayer and patience, for Allah’s mercy is always near. 🌟 [Islamic advice on mental health](https://www.al-islam.org/articles/mental-health-islamic-perspective).",
+        "Know that you are not alone. The Prophet Muhammad (PBUH) said: 'The strong person is not the one who can overpower others, but the one who controls themselves when they are angry.' (Sahih Bukhari). Seek comfort in prayer, trust in Allah, and take small steps forward. 💖 [Mental health support in Islam](https://www.therapistsin.com).",
+        "It’s okay to feel anxious. The Prophet Muhammad (PBUH) taught us, 'The believer is not stung twice from the same hole.' (Sahih Bukhari). Acknowledge your feelings, then seek peace through prayer and small actions to ground yourself. 🌸 [Islamic guidance on emotional well-being](https://www.islamicfinder.org/mental-health/).",
+        "Remember, your anxiety does not define you. The Qur'an says, 'So truly where there is hardship, there is also ease' (Qur'an 94:6). Trust in Allah’s wisdom, take one step at a time, and find your peace. 🌈 [Islamic resources on overcoming anxiety](https://www.quranicduas.com)."
+    ],
+       angry: [
+        "Anger is a natural emotion, but channel it wisely. The Prophet Muhammad (PBUH) said: 'Anger is from Satan, and Satan was created from fire.' (Sahih Muslim). Pause, breathe, and seek refuge in Allah from anger’s destructive effects. 🧘 [Islamic teachings on controlling anger](https://www.islamicstudies.info/anger).",
+        "Anger does not have to control you. The Prophet Muhammad (PBUH) advised: 'Whoever suppresses his anger, Allah will cover his faults.' (Sunan Abu Dawood). Reflect, make du'a, and redirect your energy positively. 🌱 [Dealing with anger in Islam](https://www.alim.org).",
+        "It’s okay to feel frustration. However, remember the Hadith: 'The strong man is not the one who is able to defeat others, but the one who controls his anger.' (Sahih Bukhari). Take a moment for reflection, and find a peaceful resolution. 🔵 [Learn more about controlling anger in Islam](https://www.islamicrelief.org.uk/anger-management/).",
+        "When anger arises, find peace through patience and reflection. The Qur'an reminds us: 'And those who control their anger and forgive the people – and Allah loves the doers of good.' (Qur'an 3:134). May Allah help you find peace. 🌟 [Islamic guidance on anger](https://www.quranicpath.com).",
+        "Your emotions are valid. Anger is natural, but remember: 'If you forgive and overlook, Allah is Forgiving and Merciful.' (Qur'an 64:14). Practice forgiveness, and trust in Allah’s mercy. 🌺 [Islamic teachings on forgiveness](https://www.islamicfinder.org/forgiveness-in-islam/)."
+    ],
+       sick: [
+        "Taking care of your body is the first step to healing. Allah says in the Qur'an: 'And when I am ill, it is He (Allah) who cures me.' (Qur'an 26:80). Rest, hydrate, and allow yourself time to recover fully, trusting that healing is in Allah’s hands. 💧 [Islamic advice on health](https://www.islamicfinder.org/health-in-islam/).",
+        "It is essential to listen to your body. 'And He it is Who created for you hearing, sight, and hearts. Little thanks you give!' (Qur'an 23:78). Take it slow, rest, and let your body heal with Allah’s mercy. 🌿 [Learn more about healing in Islam](https://www.al-islam.org/health-and-well-being-in-islam).",
+        "Health is the foundation of everything. The Prophet Muhammad (PBUH) said, 'There are two blessings which many people lose: health and free time.' (Sahih Bukhari). Prioritize your well-being, for this is a gift from Allah. 🌸 [Islamic view on self-care](https://www.islamicstudies.info).",
+        "Sometimes, the best thing to do is nothing. Rest and allow your body to recharge. 'Do not kill yourselves. Surely, Allah is ever Merciful to you.' (Qur'an 4:29). Healing takes time, and Allah’s mercy is abundant. 🛌 [Rest and recovery in Islam](https://www.islamicfinder.org).",
+        "Sending you healing vibes. May Allah grant you a swift recovery: 'And when I am ill, it is He who cures me.' (Qur'an 26:80). Rest, nourish your body, and trust in His wisdom. 🌈 [Healing in Islam](https://www.al-islam.org/health)."
+    ],
+        tired: [
+            "Rest is just as important as productivity. Take some time to recharge and give your body the break it truly deserves. 💖",
+            "Listen to your body – it's telling you it needs rest. Recharge, refresh, and come back even stronger. 🌟",
+            "You’ve been doing a lot. Allow yourself to rest and recover, so you can return with more energy and focus. 🌸",
+            "It’s okay to take a break. Resting doesn’t mean you’re stopping, it’s how you set yourself up for success in the long run. 🛌",
+            "Your mind and body need a reset. Take time to pause and breathe. You deserve it. 😴"
+        ],
+        happy: [
+            "Alhamdulillah for your happiness! It's a blessing that deserves to be celebrated. Let your joy ripple out and inspire those around you. 🌸",
+            "Happiness is a beautiful gift. Embrace it, cherish it, and share it with others – it can light up someone's day. 🌟",
+            "What a beautiful moment of joy! Reflect on the little things that make you smile and keep them close. ✨",
+            "Take a moment to truly savor your happiness. The world can use more of that positive energy you radiate. 💖",
+            "Keep spreading that positivity, your happiness is contagious. May it continue to grow and inspire. 🌈"
+        ],
+        heartbroken: [
+        "It’s okay to feel heartbroken. The Prophet Muhammad (PBUH) said, 'Indeed, with every difficulty, there is relief.' (Qur'an 94:6). Healing takes time. Surround yourself with love, and trust that brighter days will come. 🌿 [Support for the heartbroken in Islam](https://www.islamicfinder.org).",
+        "Grief is a journey, and Allah promises ease after hardship. 'And indeed, Allah is with those who are patient.' (Qur'an 2:153). Give yourself the grace to heal. 🌈 [Islamic perspective on grief](https://www.al-islam.org).",
+        "Heartbreak is a test, but trust that Allah’s mercy is greater. 'So be patient. Indeed, the promise of Allah is truth.' (Qur'an 30:60). Allow time to heal, and trust in His plan. 💖 [Islamic view on coping with grief](https://www.islamicstudies.info).",
+        "Your heart is strong, and time will heal it. The Prophet Muhammad (PBUH) said, 'Whoever perseveres through hardship will be rewarded.' (Sahih Bukhari). Let yourself grieve, then heal. 🌸 [Islamic grief support](https://www.quranicpath.com).",
+        "Heartache is part of life, but so is healing. Trust that Allah will bring peace to your heart. 'Indeed, Allah is the Best of Planners.' (Qur'an 3:54). 🌟 [Learn more about healing from grief](https://www.therapistsin.com)."
+    ],
+        thankyou: [
+            "You're so welcome! It’s a pleasure to help you, and I’m always here if you need anything. 🌸",
+            "Anytime! I’m glad I could assist you, and I’ll be here whenever you need support again. 💖",
+            "No worries, happy to help! You are always welcome to reach out. 🌟",
+            "I’m always here for you! You’re not alone, and I’m happy to support you however I can. 😊",
+            "It’s always a pleasure. Thank you for trusting me to assist you – I’m here whenever you need me. 🌿"
+        ],
+        salam: [
+            "Salam Alaykum! It’s so wonderful to hear from you. How are you today? 😊",
+            "Hello, Salam! I hope all is well with you. What can I assist you with today? 💖",
+            "Salam! I’m here to chat and help in any way I can. What's on your mind today? 🌿",
+            "Alaykum Salam! Let’s connect and talk about what’s on your heart. How can I help? 🌟",
+            "Salam! I’m always here to listen and help. What can I do for you today? 🌸"
+        ],
+        depressed: [
+        "I'm really sorry you're feeling this way, but I'm here for you. 💖 Please remember the words of Allah in the Qur'an: 'So truly where there is hardship, there is also ease.' (Qur'an 94:6). Don't lose hope, and trust that things will get better. 🌸 [Islamic guidance on overcoming depression](https://www.islamicrelief.org.uk/mental-health/).",
+        "It's okay to feel down sometimes. You are not alone, and things will get better. Allah says: 'Indeed, with hardship comes ease.' (Qur'an 94:6). Keep praying, and stay hopeful. 💪 [Dealing with sadness in Islam](https://www.islamicfinder.org/mental-health/).",
+        "Take a deep breath. It’s okay to feel sad sometimes. Don’t give up. You’ve got this! 🌟 The Prophet Muhammad (PBUH) said: 'When Allah loves a servant, He tests them.' (Sunan Tirmidhi). This moment will pass, and Allah is with you. [Emotional healing in Islam](https://www.al-islam.org/mental-health).",
+        "You are valued and loved. Don’t be too hard on yourself. Allah says in the Qur'an: 'And We have certainly created man in the best of stature.' (Qur'an 95:4). You are a beautiful creation of Allah, and He is always near. 💖 [Support for the heartbroken in Islam](https://www.quranicpath.com)."
+    ],
+        default: [
+        "I’m here for you. Whatever you’re feeling, feel free to share with me. I’m here to listen. 🌸 The Prophet Muhammad (PBUH) said: 'The best of people are those who are most beneficial to others.' (Daraqutni). Whatever you're going through, I'm here to support you. [Islamic advice on being supportive](https://www.islamicstudies.info).",
+        "Sometimes, we just need to talk. I’m here for you, and I’ll listen without judgment. 🌿 The Prophet Muhammad (PBUH) taught us: 'Your brother’s (or sister's) suffering is my suffering.' (Sahih Bukhari). Let's work through it together. [Islamic principles of empathy](https://www.islamicfinder.org).",
+        "Whatever you're going through, remember that you're not alone. Let's talk and work through it together. 💖 Allah says: 'And hold firmly to the rope of Allah all together and do not become divided.' (Qur'an 3:103). Together, we can overcome anything. [Islamic support during tough times](https://www.al-islam.org/mental-health).",
+        "Your feelings are important, and I’m here to support you. Take your time and share whatever you feel comfortable with. 🌟 The Prophet Muhammad (PBUH) said: 'Whoever relieves a believer’s distress, Allah will relieve their distress on the Day of Judgment.' (Sahih Muslim). [Support for mental health in Islam](https://www.quranicpath.com).",
+        "I'm here to help however I can. Let me know what's on your mind, and we can take it from there. 🌸 Allah reminds us: 'And when My servants ask you concerning Me, indeed I am near.' (Qur'an 2:186). You're never alone, and I’m here to listen. [Support for mental health in Islam](https://www.islamicfinder.org/mental-health/)."
+    ]
+    }
+}
+
+    </script>
+</body>
+
+</html>
