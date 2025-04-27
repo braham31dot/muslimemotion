@@ -226,13 +226,16 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    /* 🎯 New Styles for Phones only */
+   <style>
+    /* 🎯 Cyberpunk LED Style for Phones Only */
     @media (max-width: 600px) {
         body {
             background-image: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            /* Cute pink flowers background 🌸 */
+            /* Pink flowers still for kawaii 🌸 */
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Make it feel deeper cyberpunk */
+            color: white; /* White text */
         }
 
         .container, 
@@ -240,30 +243,49 @@
         #helpPopup, 
         #messages, 
         .popup {
-            background-color: #0d0d0d !important; /* Deep black cyberpunk bg */
-            color: #c77dff !important; /* Purple neon text */
-            border: 1px solid #c77dff; /* Purple border to match */
+            background-color: #000000; /* Pure black container */
+            color: white;
+            border: 2px solid red; /* Red border */
+            box-shadow: 0 0 15px red; /* Red glow around boxes */
         }
 
         h1, p, button, input[type="text"], .highlight, .important, .footer {
-            color: #c77dff !important; /* Make sure all text is neon purple */
+            color: white !important; /* All text clean white */
         }
 
         input[type="text"] {
-            background-color: #1a1a1a; /* Slightly lighter black for input */
-            border: 1px solid #c77dff;
+            background-color: #0a0a0a; /* Dark black input */
+            border: 1px solid royalblue;
+            color: white;
+            box-shadow: 0 0 10px royalblue;
         }
 
         button {
-            background-color: #c77dff;
+            background-color: royalblue;
             color: black;
+            box-shadow: 0 0 12px royalblue;
+            border: none;
+            font-weight: bold;
         }
 
         button:hover {
-            background-color: #9d4edd;
+            background-color: #4169e1; /* Lighter royalblue on hover */
+            box-shadow: 0 0 20px red; /* Red glow on hover for more LED effect */
+        }
+
+        .botMessage {
+            background-color: #0a0a0a;
+            color: white;
+            border: 1px solid royalblue;
+            box-shadow: 0 0 8px royalblue;
+        }
+
+        .botHead, .botHeadNearSend {
+            background-color: red;
+            box-shadow: 0 0 8px red;
         }
     }
-  </style>
+</style>
 </head>
 
 <body>
